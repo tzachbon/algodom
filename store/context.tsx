@@ -1,26 +1,16 @@
-import { createContext, Dispatch, useContext, useReducer } from 'react';
-import Store, { reducer, Actions } from './store';
+import { useLocalStore } from 'mobx-react';
+import { createContext, useContext } from 'react';
+import store from './../store/store';
 
-interface Context {
-  store: typeof Store;
-  dispatch: Dispatch<Actions>;
-}
-
-const storeContext = createContext<Context | null>(null);
+const storeContext = createContext<null | { store: typeof store }>({ store });
 
 const useStores = () => useContext(storeContext);
 
 const StoreProvider = ({ children }) => {
-  const [store, dispatch] = useReducer(reducer, Store);
+  const state = useLocalStore(() => ({ store }));
+
   return (
-    <storeContext.Provider
-      value={{
-        store,
-        dispatch,
-      }}
-    >
-      {children}
-    </storeContext.Provider>
+    <storeContext.Provider value={state}>{children}</storeContext.Provider>
   );
 };
 

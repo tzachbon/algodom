@@ -1,25 +1,38 @@
-import Head from 'next/head';
-import { useEffect } from 'react';
+import { observer, useLocalStore } from 'mobx-react';
 import useStores from '../store/context';
+import Card from '../components/Card';
+
+const initialState = {
+  cards: [
+    {
+      key: Math.random(),
+      title: 'Sorting',
+      image: '',
+      link: 'sort',
+    },
+    {
+      key: Math.random(),
+      title: 'Searching',
+      image: '',
+      link: 'search',
+    },
+  ],
+};
 
 const Home: React.FC<{}> = () => {
-  const { store, dispatch } = useStores();
-
-  useEffect(() => {
-    console.log(store.count);
-  }, [store.count]);
+  const { store } = useStores();
+  const state = useLocalStore(() => initialState);
 
   return (
-    <div className='container'>
-      <Head>
-        <title>Create Next App</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
-      <main>{store.count}</main>
-      <button onClick={() => dispatch('inc')}>update</button>
+    <div className='Home'>
+      <h1>Welcome to AlgoDOM</h1>
+      <main>
+        {state.cards.map((cardProps) => (
+          <Card {...cardProps} />
+        ))}
+      </main>
     </div>
   );
 };
 
-export default Home;
+export default observer(Home);
