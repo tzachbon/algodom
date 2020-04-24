@@ -1,0 +1,22 @@
+@import './components/home';
+
+@import './globals';
+
+//base
+@import './normalize';
+@import './base';
+
+//transitionGroups
+@import './transitionGroups';
+
+//pages
+@import './solutions';
+//ui
+@import './ui';
+
+body {
+  #__next {
+    width: 100%;
+    height: 100%;
+  }
+}
