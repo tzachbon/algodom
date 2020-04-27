@@ -20,6 +20,11 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons'
           />
+          <link
+            href='https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap'
+            rel='stylesheet'
+          ></link>
+          <title>AlgoDOM</title>
           <style jsx global>
             {`
               html,
@@ -33,7 +38,6 @@ class MyDocument extends Document {
                 box-sizing: border-box;
               }
               body {
-                font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
                 font-size: 1rem;
                 margin: 0;
               }

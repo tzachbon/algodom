@@ -1,12 +1,12 @@
 import { useLocalStore } from 'mobx-react';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, FC } from 'react';
 import store from './../store/store';
 
 const storeContext = createContext<null | { store: typeof store }>({ store });
 
 const useStores = () => useContext(storeContext);
 
-const StoreProvider = ({ children }) => {
+const StoreProvider: FC<{}> = ({ children }) => {
   const state = useLocalStore(() => ({ store }));
 
   return (

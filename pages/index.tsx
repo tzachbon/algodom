@@ -1,31 +1,40 @@
 import { observer, useLocalStore } from 'mobx-react';
-import useStores from '../store/context';
 import Card from '../components/Card';
+import SearchIcon from '../components/SearchIcon';
+import SortIcon from '../components/SortIcon';
 
 const initialState = {
   cards: [
     {
       key: Math.random(),
       title: 'Sorting',
-      image: '',
+      Icon: SortIcon,
+      description: 'lorem ipsum dolor sit amet',
       link: 'sort',
     },
     {
       key: Math.random(),
       title: 'Searching',
-      image: '',
+      description:
+        ' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum quo asperiores ad ipsam, explicabo',
+      Icon: SearchIcon,
       link: 'search',
     },
   ],
 };
 
 const Home: React.FC<{}> = () => {
-  const { store } = useStores();
   const state = useLocalStore(() => initialState);
 
   return (
     <div className='Home'>
-      <h1>Welcome to AlgoDOM</h1>
+      <h1>
+        Welcome to <span>AlgoDOM</span>
+      </h1>
+      <p>
+        <span>AlgoDOM</span> is an application that visualizes familiar
+        algothemic techniques
+      </p>
       <main>
         {state.cards.map((cardProps) => (
           <Card {...cardProps} />

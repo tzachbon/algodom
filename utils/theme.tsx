@@ -1,24 +1,18 @@
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { getMainColor } from './styles';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
-    grey: {
-      800: '#000000', // overrides failed
-      900: '#121212', // overrides success
-    },
-    background: {
-      paper: '#000000',
-    },
+    background: {},
     primary: {
       light: '#fff',
-      main: '#09d3ac',
-      dark: '#eee',
-      contrastText: '#eee',
+      main: getMainColor(),
+      dark: '#333',
+      contrastText: '#333',
     },
     secondary: {
       main: '#40739e',
-      dark: '#eee',
+      dark: '#333',
       light: '#fff',
       contrastText: '#eee',
     },
@@ -27,7 +21,7 @@ const theme = createMuiTheme({
     fontFamily: 'Nunito Sans, Roboto, sans-serif',
     fontSize: 20,
     allVariants: {
-      color: '#eee',
+      color: '#333',
     },
   },
 });

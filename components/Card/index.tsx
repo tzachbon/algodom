@@ -1,24 +1,35 @@
-import * as React from 'react';
+import LaunchIcon from '@material-ui/icons/Launch';
+import React from 'react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
+import './style.scss';
+import Link from 'next/link';
 
 interface ICardProps extends WithClassName {
   title: string;
-  image: string;
+  Icon: React.FC<any>;
+  description: string;
   link: string;
 }
 
 const Card: React.FunctionComponent<ICardProps> = ({
   className,
   title,
-  image,
+  Icon,
+  description,
   link,
 }) => {
   className = ClassNames(className, 'Card');
   return (
-    <div className={className}>
-      <h2>{title}</h2>
-      <img src={image} alt={title} />
-    </div>
+    <Link href={link}>
+      <div className={className}>
+        <div className='title'>
+          <h2>{title}</h2>
+          <LaunchIcon className='title__icon' />
+        </div>
+        <span className='Card__description'>{description}</span>
+        <Icon className='Card__icon' />
+      </div>
+    </Link>
   );
 };
 

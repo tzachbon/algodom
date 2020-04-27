@@ -1,10 +1,10 @@
 import { AppProps } from 'next/app';
 import { StoreProvider } from './../store/context';
 import { observer } from 'mobx-react';
-import './../assest/scss/styles.scss';
 import Theme from '../utils/theme';
+import './../assets/scss/styles.scss';
 import Container from '../components/Container';
-import 'mobx-react-lite/batchingForReactDom'
+import 'mobx-react-lite/batchingForReactDom';
 
 export interface Props extends AppProps {}
 

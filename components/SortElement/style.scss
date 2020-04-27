@@ -1,0 +1,24 @@
+@import './../../assets/scss/globals';
+
+.SortElement {
+  position: relative;
+  width: 1.5rem;
+  height: 5rem;
+  background: $main;
+  margin: 0 0.2rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  transition: height 0.1s ease-in;
+
+  &.current {
+    background: green;
+  }
+
+  span {
+    position: absolute;
+    transform: rotate(180deg) translateX(50%);
+    bottom: -2rem;
+    font-weight: bold;
+    left: 50%;
+  }
+}

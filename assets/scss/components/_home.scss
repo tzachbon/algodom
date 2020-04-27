@@ -1,0 +1,33 @@
+@import './../globals';
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 2rem 18rem 0;
+
+  span {
+    color: $main;
+    font-weight: bold;
+  }
+
+  > h1 {
+    font-size: 5rem;
+    @include animation(softFromBottom 0.7s $easing both);
+  }
+
+  > p {
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    @include animation(softFromBottom 0.7s 0.5s $easing both);
+  }
+
+  > main {
+    flex: 1;
+    display: flex;
+    @include animation(softFromBottom 0.7s 0.8s $easing both);
+    justify-content: space-between;
+    align-items: center;
+  }
+}
