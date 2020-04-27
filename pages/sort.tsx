@@ -4,11 +4,12 @@ import React, { useEffect } from 'react';
 import SelectAlgorithm from '../components/SelectAlgorithm';
 import SortSlider from '../components/SortSlider';
 import ClassNames, { WithClassName } from '../utils/classnames';
-import { getMergeSortAnimations } from '../utils/sort/merge-sort';
-import SortElement from './../components/SortElement';
-import createKey from '../utils/uuid';
 import useBubbleSort from '../utils/sort/bubble-sort';
-import { toJS } from 'mobx';
+import { Sorts, testArray } from '../utils/sort/sort';
+import createKey from '../utils/uuid';
+import SortElement from './../components/SortElement';
+import { sortsArray } from './../utils/sort/sort';
+import useMergeSort from './../utils/sort/merge-sort';
 
 interface ISortProps extends WithClassName {}
 
@@ -24,7 +25,9 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
 
   useEffect(() => {
     updateElements(Math.floor(Math.random() * 70));
-  }, [state.currentAlgorithm]);
+  }, []);
+
+  useEffect(() => {}, [state.currentAlgorithm]);
 
   const updateElements = (length: number) => {
     if (state.elements.length > length) {
@@ -44,26 +47,26 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
 
   const onSort = async () => {
     state.sorting = true;
-    switch (state.currentAlgorithm) {
+    switch (state.currentAlgorithm as Sorts) {
       case 'merge-sort':
-        // const animation = await getMergeSortAnimations(state.elements.slice());
-
-        // console.log(animation);
-
-        // for (const [index, value] of animation) {
-        //   const element = state.elements[index];
-        //   element.current = true;
-        //   await delay(0);
-        //   element.value = value;
-        //   await delay(0);
-        //   element.current = false;
-        // }
+        await useMergeSort(state.elements, async (i, j, newArray) => {
+          if (!state.sorting) return;
+          const elements = state.elements.slice(i, j + 1);
+          let k = 0;
+          for (const element of elements) {
+            element.current = true;
+            await delay(0);
+            element.value = newArray[k++].value;
+            await delay(0);
+            element.current = false;
+          }
+        });
 
         break;
 
       case 'bubble-sort':
-        await useBubbleSort(state.elements, async (i, j) => {
-          if (!state.sorting) return;
+        await useBubbleSort(state.elements, async (i: number, j: number) => {
+          if (!state.sorting || i === j) return;
           const array = state.elements;
           const temp = array[i].value;
           array[i].current = true;
@@ -74,7 +77,6 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
           array[i].current = false;
           array[j].current = false;
         });
-
         break;
 
       default:
@@ -98,10 +100,16 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
           value={state.elements.length}
           updateElements={updateElements}
         />
-        <SelectAlgorithm disabled={state.sorting} />
+        <SelectAlgorithm
+          defaultValue={state.currentAlgorithm}
+          updateAlgo={(algo) => (state.currentAlgorithm = algo)}
+          algorithms={sortsArray}
+          disabled={state.sorting}
+        />
         <Button
           onClick={state.sorting ? cancelSort : onSort}
           variant='outlined'
+          disabled={!state.currentAlgorithm}
           color={state.sorting ? 'secondary' : 'primary'}
         >
           {state.sorting ? 'Pause' : 'Start!'}

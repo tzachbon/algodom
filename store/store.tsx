@@ -1,8 +1,3 @@
-const store = {
-  count: 0,
-  inc() {
-    this.count++;
-  },
-};
+const store = {};
 
 export default store;
