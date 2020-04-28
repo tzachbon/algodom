@@ -1,0 +1,15 @@
+@import './../../assets/scss/globals';
+
+.SortMenu {
+  .MuiMenu-paper {
+    min-width: 20rem;
+
+    > .MuiMenu-list > li {
+      display: flex;
+      flex-direction: column;
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba($main, 0.2);
+      }
+    }
+  }
+}

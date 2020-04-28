@@ -2,13 +2,13 @@
 
 .SortElement {
   position: relative;
-  width: 1.5rem;
+  width: 2.5rem;
   height: 5rem;
   background: $main;
   margin: 0 0.2rem;
   border-bottom-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
-  transition: height 0.1s ease-in;
+  transition: height 0.1s ease-out;
 
   &.current {
     background: green;

@@ -22,8 +22,10 @@ const SortSlider: React.FunctionComponent<ISortSliderProps> = ({
       className={className}
       disabled={disabled}
       step={1}
-      min={1}
-      max={70}
+      min={2}
+      valueLabelDisplay='auto'
+      getAriaValueText={(value) => value.toString()}
+      max={120}
       value={value}
       onChange={(e, value) => updateElements(value as number)}
     />

@@ -8,11 +8,9 @@ const theme = createMuiTheme({
       light: '#fff',
       main: getMainColor(),
       dark: '#333',
-      contrastText: '#333',
     },
     secondary: {
       main: '#40739e',
-      dark: '#333',
       light: '#fff',
       contrastText: '#eee',
     },
@@ -21,7 +19,7 @@ const theme = createMuiTheme({
     fontFamily: 'Nunito Sans, Roboto, sans-serif',
     fontSize: 20,
     allVariants: {
-      color: '#333',
+      color: getMainColor(),
     },
   },
 });

@@ -24,7 +24,6 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap'
             rel='stylesheet'
           ></link>
-          <title>AlgoDOM</title>
           <style jsx global>
             {`
               html,

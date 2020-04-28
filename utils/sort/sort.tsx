@@ -1,9 +1,12 @@
 import useBubbleSort from './bubble-sort';
+
 import { ValuesType } from 'utility-types';
+import useMergeSort from './merge-sort';
 
 const SORTS = {
   bubbleSort: 'bubble-sort',
   mergeSort: 'merge-sort',
+  quickSort: 'quick-sort',
 };
 
 export type Sorts = ValuesType<typeof SORTS>;
@@ -26,4 +29,4 @@ const testArray = async (testFn: (array: any[]) => any): Promise<boolean> => {
   return JSON.stringify(sorted) === JSON.stringify(tested);
 };
 
-export { useBubbleSort, sortsArray, testArray };
+export { useBubbleSort, useMergeSort, sortsArray, testArray };
