@@ -14,8 +14,8 @@ import './style.scss';
 
 interface ISortMenuProps extends WithClassName {
   onReset: () => void;
-  speed: number;
-  onSpeedChanged: (speed: number) => void;
+  speed: 0 | 1 | 2;
+  onSpeedChanged: (speed: 0 | 1 | 2) => void;
 }
 
 const marks = [
@@ -58,7 +58,7 @@ const SortMenu = forwardRef(
             step={1}
             value={speed}
             valueLabelFormat={(value) => value.toString()}
-            onChange={(e, value) => onSpeedChanged(value as number)}
+            onChange={(e, value) => onSpeedChanged(value as 0 | 1 | 2)}
             marks={marks}
             min={0}
             max={2}

@@ -1,12 +1,9 @@
 import { toJS } from 'mobx';
+import { ISortElement } from '../../components/SortElement';
 
 export default async function useMergeSort(
-  array: { value: number }[],
-  swappedFn: (
-    i: number,
-    j: number,
-    newArray: { value: number }[]
-  ) => Promise<any>
+  array: ISortElement[],
+  swappedFn: (i: number, j: number, newArray: ISortElement[]) => Promise<any>
 ) {
   array = toJS(array).map((element, originalIndex) => ({
     ...element,
@@ -19,12 +16,8 @@ export default async function useMergeSort(
 }
 
 const mergeHelper = async (
-  array: { value: number }[],
-  swappedFn: (
-    i: number,
-    j: number,
-    newArray: { value: number }[]
-  ) => Promise<any>
+  array: ISortElement[],
+  swappedFn: (i: number, j: number, newArray: ISortElement[]) => Promise<any>
 ) => {
   if (array.length < 2) return array;
 
@@ -40,13 +33,9 @@ const mergeHelper = async (
 };
 
 const doMerge = async (
-  left: { value: number }[],
-  right: { value: number }[],
-  swappedFn: (
-    i: number,
-    j: number,
-    newArray: { value: number }[]
-  ) => Promise<any>
+  left: ISortElement[],
+  right: ISortElement[],
+  swappedFn: (i: number, j: number, newArray: ISortElement[]) => Promise<any>
 ) => {
   let results = [];
   while (left.length && right.length) {

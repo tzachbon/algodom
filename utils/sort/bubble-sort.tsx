@@ -1,7 +1,8 @@
 import { toJS } from 'mobx';
+import { ISortElement } from '../../components/SortElement';
 
 export default async function useBubbleSort(
-  array: { value: number }[],
+  array: ISortElement[],
   swappedFn: (i: number, j: number) => any
 ) {
   array = toJS(array);

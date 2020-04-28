@@ -1,20 +1,25 @@
 import Button from '@material-ui/core/Button';
 import { observer, useLocalStore } from 'mobx-react';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import SelectAlgorithm from '../components/SelectAlgorithm';
 import SortMenu from '../components/SortMenu';
 import SortSlider from '../components/SortSlider';
 import ClassNames, { WithClassName } from '../utils/classnames';
-import useBubbleSort from '../utils/sort/bubble-sort';
-import { Sorts } from '../utils/sort/sort';
-import createKey from '../utils/uuid';
-import SortElement from './../components/SortElement';
-import useMergeSort from './../utils/sort/merge-sort';
-import { sortsArray } from './../utils/sort/sort';
 import randomInRange from '../utils/randomInRange';
 import { shuffle } from '../utils/shuffle';
+import useSort, { Sorts } from '../utils/sort/sort';
+import createKey from '../utils/uuid';
+import SortElement, { ISortElement } from './../components/SortElement';
+import { sortsArray } from './../utils/sort/sort';
 
 interface ISortProps extends WithClassName {}
+
+export interface SortState {
+  elements: ISortElement[];
+  speed: 0 | 1 | 2;
+  currentAlgorithm: Sorts;
+  sorting: boolean;
+}
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -23,7 +28,7 @@ export const MAX_SORT_ELEMENTS = 85;
 const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
   className = ClassNames(className, 'Sort');
 
-  const state = useLocalStore(() => ({
+  const state = useLocalStore<SortState>(() => ({
     elements: [],
     speed: 1,
     currentAlgorithm: 'merge-sort',
@@ -75,46 +80,7 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
     [state.elements]
   );
 
-  const onSort = useCallback(async () => {
-    state.sorting = true;
-    switch (state.currentAlgorithm as Sorts) {
-      case 'merge-sort':
-        await useMergeSort(state.elements, async (i, j, newArray) => {
-          if (!state.sorting) return;
-          const elements = state.elements.slice(i, j + 1);
-          let k = 0;
-          for (const element of elements) {
-            element.current = true;
-            await delayBySpeed();
-            element.value = newArray[k++].value;
-            await delayBySpeed(false);
-            element.current = false;
-          }
-        });
-
-        break;
-
-      case 'bubble-sort':
-        await useBubbleSort(state.elements, async (i: number, j: number) => {
-          if (!state.sorting || i === j) return;
-          const array = state.elements;
-          const temp = array[i].value;
-          array[i].current = true;
-          array[j].current = true;
-          await delayBySpeed();
-          array[i].value = array[j].value;
-          array[j].value = temp;
-          array[i].current = false;
-          array[j].current = false;
-        });
-        break;
-
-      default:
-        break;
-    }
-
-    state.sorting = false;
-  }, [
+  const onSort = useCallback(async () => await useSort(state, delayBySpeed), [
     state,
     state.speed,
     state.currentAlgorithm,

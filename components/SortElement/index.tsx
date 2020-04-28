@@ -8,13 +8,19 @@ interface ISortElementProps extends WithClassName {
   current?: boolean;
 }
 
+export interface ISortElement {
+  current?: boolean;
+  value: number;
+  key?: string;
+}
+
 const SortElement: React.FunctionComponent<ISortElementProps> = ({
   className,
   value,
   current,
 }) => {
   className = ClassNames(className, 'SortElement', { current });
-  
+
   return (
     <div className={className} style={{ height: `${(value ?? 1) / 1.5}rem` }}>
       <span className='value'>{value}</span>
