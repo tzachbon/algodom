@@ -21,11 +21,11 @@ const SelectAlgorithm: React.FunctionComponent<ISelectAlgorithmProps> = ({
   disabled,
   algorithms,
   updateAlgo,
-  defaultValue = '',
+  defaultValue = null,
 }) => {
   className = ClassNames(className, 'SelectAlgorithm');
   const label = 'Select Algorithm';
-  const [selected, setSelected] = useState<string>(defaultValue);
+  const [selected, setSelected] = useState<Sorts>(defaultValue);
 
   useEffect(() => {
     updateAlgo && updateAlgo(selected);
@@ -36,7 +36,7 @@ const SelectAlgorithm: React.FunctionComponent<ISelectAlgorithmProps> = ({
       <InputLabel>{label}</InputLabel>
       <Select
         color='primary'
-        onChange={({ target: { value } }) => setSelected(value as string)}
+        onChange={({ target: { value } }) => setSelected(value as Sorts)}
         value={selected}
         variant='outlined'
         label={label}

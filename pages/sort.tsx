@@ -135,6 +135,7 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
           Settings
         </Button>
         <SortMenu
+          array={state.elements}
           onSpeedChanged={(speed) => (state.speed = speed)}
           speed={state.speed}
           onReset={onReset}

@@ -1,18 +1,19 @@
+import { SortState } from './../../pages/sort';
 import useBubbleSort from './bubble-sort';
-import { ValuesType } from 'utility-types';
 import useMergeSort from './merge-sort';
 import useQuickSort from './quick-sort';
-import { SortState } from './../../pages/sort';
+import useHeapSort from './heap-sort';
 
-const SORTS = {
-  bubbleSort: 'bubble-sort',
-  mergeSort: 'merge-sort',
-  quickSort: 'quick-sort',
+const sortFunctions = {
+  'bubble-sort': useBubbleSort,
+  'merge-sort': useMergeSort,
+  'quick-sort': useQuickSort,
+  'heap-sort': useHeapSort,
 };
 
-export type Sorts = ValuesType<typeof SORTS>;
+export type Sorts = keyof typeof sortFunctions;
 
-const sortsArray: Sorts[] = Object.values(SORTS);
+const sortsArray: Sorts[] = Object.keys(sortFunctions) as Sorts[];
 
 const testArray = async (testFn: (array: any[]) => any): Promise<boolean> => {
   const length = 1000;
@@ -29,7 +30,15 @@ const testArray = async (testFn: (array: any[]) => any): Promise<boolean> => {
   return JSON.stringify(sorted) === JSON.stringify(tested);
 };
 
-export { useBubbleSort, useQuickSort, useMergeSort, sortsArray, testArray };
+export {
+  useBubbleSort,
+  useQuickSort,
+  useMergeSort,
+  useHeapSort,
+  sortsArray,
+  testArray,
+  sortFunctions,
+};
 
 export default async function useSort(state: SortState, delayFn) {
   state.sorting = true;
@@ -79,6 +88,21 @@ export default async function useSort(state: SortState, delayFn) {
         array[j].current = false;
       });
 
+      break;
+
+    case 'heap-sort':
+      await useHeapSort(state.elements, async (i: number, j: number) => {
+        if (!state.sorting || i === j) return;
+        const array = state.elements;
+        const temp = array[i].value;
+        array[i].current = true;
+        array[j].current = true;
+        await delayFn();
+        array[i].value = array[j].value;
+        array[j].value = temp;
+        array[i].current = false;
+        array[j].current = false;
+      });
       break;
 
     default:

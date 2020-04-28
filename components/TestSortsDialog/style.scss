@@ -1,0 +1,15 @@
+.TestSortsDialog {
+  &__DialogContent {
+    display: flex;
+
+    & > div {
+      min-width: 10rem;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+  }
+}
