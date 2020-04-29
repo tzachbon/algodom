@@ -1,2 +1,9 @@
 const withSass = require('@zeit/next-sass');
-module.exports = withSass({});
+const isProd = (process.env.NODE_ENV || 'production') === 'production';
+
+module.exports = withSass({
+  exportPathMap: () => ({
+    '/': { page: '/' },
+  }),
+  assetPrefix: isProd ? '/algodom' : '',
+});
