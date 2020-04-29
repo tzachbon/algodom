@@ -1,6 +1,6 @@
 import { useLocalStore } from 'mobx-react';
 import { createContext, useContext, FC } from 'react';
-import store from './../store/store';
+import store from './store';
 
 const storeContext = createContext<null | { store: typeof store }>({ store });
 

@@ -1,4 +1,4 @@
-import { SortState } from './../../pages/sort';
+import { SortState } from '../../pages/sort';
 import useBubbleSort from './bubble-sort';
 import useMergeSort from './merge-sort';
 import useQuickSort from './quick-sort';

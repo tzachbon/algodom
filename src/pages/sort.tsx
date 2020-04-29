@@ -9,8 +9,8 @@ import randomInRange from '../utils/randomInRange';
 import { shuffle } from '../utils/shuffle';
 import useSort, { Sorts } from '../utils/sort/sort';
 import createKey from '../utils/uuid';
-import SortElement, { ISortElement } from './../components/SortElement';
-import { sortsArray } from './../utils/sort/sort';
+import SortElement, { ISortElement } from '../components/SortElement';
+import { sortsArray } from '../utils/sort/sort';
 
 interface ISortProps extends WithClassName {}
 

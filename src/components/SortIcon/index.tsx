@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getMainColor } from './../../utils/styles';
+import { getMainColor } from '../../utils/styles';
 
 const mainColor = getMainColor()
 

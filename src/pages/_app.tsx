@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { StoreProvider } from './../store/context';
+import { StoreProvider } from '../store/context';
 import { observer } from 'mobx-react';
 import Theme from '../utils/theme';
 import './../assets/scss/styles.scss';
