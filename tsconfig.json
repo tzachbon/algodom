@@ -19,5 +19,5 @@
     "outDir": "dist"
   },
   "exclude": ["./node_modules/**/*", "node_modules", ".vscode"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/tsconfig.server.json"]
 }

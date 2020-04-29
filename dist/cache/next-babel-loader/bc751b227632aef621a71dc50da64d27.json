@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function randomInRange(min, max) {\n  min = Math.ceil(min);\n  max = Math.floor(max);\n  return Math.floor(Math.random() * (max - min + 1)) + min;\n}","map":null,"metadata":{},"sourceType":"module"}
