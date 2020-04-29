@@ -2,6 +2,7 @@
   "name": "algodom",
   "version": "0.1.0",
   "private": true,
+  "main": "out/index.html",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
