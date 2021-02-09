@@ -7,27 +7,44 @@
   flex: 1;
   padding: 2rem 18rem 0;
 
+  @media (max-width: 600px) {
+    padding: 0;
+    max-width: 100%;
+  }
+
   span {
     color: $main;
     font-weight: bold;
   }
 
-  > h1 {
+  >h1 {
     font-size: 5rem;
     @include animation(softFromBottom 0.7s $easing both);
+
+    @media (max-width: 600px) {
+      font-size: 3rem;
+    }
   }
 
-  > p {
+  >p {
     margin: 1rem 0;
     font-size: 2.5rem;
     @include animation(softFromBottom 0.7s 0.5s $easing both);
+
+    @media (max-width: 600px) {
+      font-size: 1.5rem;
+    }
   }
 
-  > main {
+  >main {
     flex: 1;
     display: flex;
     @include animation(softFromBottom 0.7s 0.8s $easing both);
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
   }
 }
