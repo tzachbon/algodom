@@ -9,16 +9,16 @@ const initialState = {
       key: Math.random(),
       title: 'Sorting',
       Icon: SortIcon,
-      description: 'lorem ipsum dolor sit amet',
+      description: 'See popular sorting algorithms',
       link: 'sort',
     },
     {
       key: Math.random(),
       title: 'Searching',
-      description:
-        ' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum quo asperiores ad ipsam, explicabo',
+      description: 'Soon...',
       Icon: SearchIcon,
       link: 'search',
+      disabled: true
     },
   ],
 };
