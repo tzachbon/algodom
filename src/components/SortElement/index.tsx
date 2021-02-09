@@ -22,7 +22,7 @@ const SortElement: React.FunctionComponent<ISortElementProps> = ({
   className = ClassNames(className, 'SortElement', { current });
 
   return (
-    <div className={className} style={{ height: `${(value ?? 1) / 1.5}rem` }}>
+    <div className={className} style={{ height: `${Math.min((value ?? 1) / 1.5, 55)}rem` }}>
       <span className='value'>{value}</span>
     </div>
   );

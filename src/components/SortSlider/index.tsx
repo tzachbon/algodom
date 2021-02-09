@@ -2,6 +2,9 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
 import Slider from '@material-ui/core/Slider';
+import { useIsMobile } from '../../utils/use-device-type';
+import { useTotalSortElement } from '../../utils/use-total-sort-elements';
+
 
 interface ISortSliderProps extends WithClassName {
   value: number;
@@ -16,6 +19,7 @@ const SortSlider: React.FunctionComponent<ISortSliderProps> = ({
   disabled,
 }) => {
   className = ClassNames(className, 'SortSlider');
+  const { max } = useTotalSortElement();
   return (
     <Slider
       className={className}
@@ -24,7 +28,7 @@ const SortSlider: React.FunctionComponent<ISortSliderProps> = ({
       min={2}
       valueLabelDisplay='auto'
       getAriaValueText={(value) => value.toString()}
-      max={120}
+      max={max}
       value={value}
       onChange={(e, value) => updateElements(value as number)}
     />

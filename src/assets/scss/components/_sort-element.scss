@@ -21,4 +21,8 @@
     font-weight: bold;
     left: 50%;
   }
+
+  @media (max-width: 600px) {
+    max-height: 85% !important;
+  }
 }

@@ -11,8 +11,9 @@ import useSort, { Sorts } from '../utils/sort/sort';
 import createKey from '../utils/uuid';
 import SortElement, { ISortElement } from '../components/SortElement';
 import { sortsArray } from '../utils/sort/sort';
+import { useTotalSortElement } from '../utils/use-total-sort-elements';
 
-interface ISortProps extends WithClassName {}
+interface ISortProps extends WithClassName { }
 
 export interface SortState {
   elements: ISortElement[];
@@ -22,8 +23,6 @@ export interface SortState {
 }
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-export const MAX_SORT_ELEMENTS = 85;
 
 const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
   className = ClassNames(className, 'Sort');
@@ -40,6 +39,8 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
   useEffect(() => {
     onReset();
   }, []);
+
+  const { max, min } = useTotalSortElement()
 
   const delayBySpeed = useCallback(
     async (first = true) => {
@@ -69,7 +70,7 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
           .map(() => ({
             value: Math.min(
               Math.floor(Math.random() * length) + 1,
-              MAX_SORT_ELEMENTS
+              max
             ),
             key: createKey(),
           }));
@@ -97,7 +98,7 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
     if (state.elements.length) {
       shuffle(state.elements);
     } else {
-      updateElements(randomInRange(20, MAX_SORT_ELEMENTS));
+      updateElements(randomInRange(min, max));
     }
   }, [state.elements]);
 

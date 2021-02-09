@@ -5,12 +5,19 @@
   padding: 3rem 2rem;
   max-width: 100%;
   max-height: 100%;
+
+  @media (max-width: 600px) {
+    justify-content: space-between;
+  }
+
   .titles {
     margin-bottom: 1rem;
-    > h1 {
+
+    >h1 {
       font-size: 3rem;
     }
-    > p {
+
+    >p {
       font-size: 1.5rem;
     }
   }
@@ -22,8 +29,22 @@
     align-content: center;
     width: 100%;
 
-    & > * {
+    &>* {
       margin-right: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap-reverse;
+
+
+      &>button {
+        flex: 1 !important;
+        margin-bottom: 1rem;
+
+        &:nth-child(4) {
+          margin-right: 0 !important;
+        }
+      }
     }
   }
 
@@ -33,6 +54,6 @@
     justify-content: center;
     align-items: flex-start;
     max-width: 100%;
-    transform: rotate(180deg)
+    transform: rotate(180deg);
   }
 }

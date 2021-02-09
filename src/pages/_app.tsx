@@ -7,11 +7,24 @@ import Theme from '../utils/theme';
 import Container from '../components/Container';
 import Head from 'next/head';
 
-export interface Props extends AppProps {}
+type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
 
-const App: React.FC<Props> = ({ Component, pageProps }) => {
+async function getInitialProps({ ctx }) {
+  const UA = ctx.req?.headers['user-agent'];
+  const isMobile = Boolean(UA?.match(
+    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  ))
+
+  return {
+    deviceType: isMobile ? 'mobile' : 'desktop'
+  }
+}
+
+export interface Props extends AppProps, ThenArg<ReturnType<typeof getInitialProps>> { }
+
+const App: React.FC<Props> = ({ Component, pageProps, deviceType }) => {
   return (
-    <StoreProvider>
+    <StoreProvider initialValues={{ deviceType }}>
       <Theme>
         <Container>
           <Head>
@@ -23,5 +36,8 @@ const App: React.FC<Props> = ({ Component, pageProps }) => {
     </StoreProvider>
   );
 };
+
+(App as any).getInitialProps = getInitialProps;
+
 
 export default observer(App);
