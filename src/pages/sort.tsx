@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { observer, useLocalStore } from 'mobx-react';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useLayoutEffect } from 'react';
 import SelectAlgorithm from '../components/SelectAlgorithm';
 import SortMenu from '../components/SortMenu';
 import SortSlider from '../components/SortSlider';
@@ -39,6 +39,18 @@ const Sort: React.FunctionComponent<ISortProps> = ({ className }) => {
   useEffect(() => {
     onReset();
   }, []);
+
+  useLayoutEffect(() => {
+    const appStatus = { mounted: true };
+
+    setTimeout(() => {
+      if (appStatus.mounted) {
+        onSort();
+      }
+    }, 1000);
+
+    return () => { appStatus.mounted = false };
+  }, [])
 
   const { max, min } = useTotalSortElement()
 
