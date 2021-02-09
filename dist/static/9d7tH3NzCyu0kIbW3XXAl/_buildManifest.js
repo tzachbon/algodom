@@ -1,1 +1,0 @@
-self.__BUILD_MANIFEST = (function(a){return {"/":[a],"/index":[a],"/sort":["static\u002Fchunks\u002F29107295.a0eca3067dd92b3101af.js",a]}}("static\u002Fchunks\u002F3347ab854b35feb87f04a1d3fc9ab92907b68e8b.cb5a7e0e3b3d555ec391.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
