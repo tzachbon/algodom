@@ -8,6 +8,7 @@ interface ICardProps extends WithClassName {
   Icon: React.FC<any>;
   description: string;
   link: string;
+  disabled?: boolean
 }
 
 const Card: React.FunctionComponent<ICardProps> = ({
@@ -16,19 +17,22 @@ const Card: React.FunctionComponent<ICardProps> = ({
   Icon,
   description,
   link,
+  disabled
 }) => {
   className = ClassNames(className, 'Card');
-  return (
-    <Link href={link}>
-      <div className={className}>
-        <div className='title'>
-          <h2>{title}</h2>
-          <LaunchIcon className='title__icon' />
-        </div>
-        <span className='Card__description'>{description}</span>
-        <Icon className='Card__icon' />
+
+  const element = (
+    <div className={className}>
+      <div className='title'>
+        <h2>{title}</h2>
+        <LaunchIcon className='title__icon' />
       </div>
-    </Link>
+      <span className='Card__description'>{description}</span>
+      <Icon className='Card__icon' />
+    </div>
+  )
+  return (
+    disabled ? element : <Link href={link}>{element}</Link>
   );
 };
 
