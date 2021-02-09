@@ -7,7 +7,7 @@
     "build:server": "tsc --project src/tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server",
-    "start": "open-local && NODE_ENV=production node dist/server/index.js",
+    "start": "npm run open-local && NODE_ENV=production node dist/server/index.js",
     "open-local": "open-cli http://localhost:3000"
   },
   "dependencies": {
