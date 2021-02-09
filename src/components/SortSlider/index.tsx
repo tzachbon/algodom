@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
-import './style.scss';
 import Slider from '@material-ui/core/Slider';
 
 interface ISortSliderProps extends WithClassName {

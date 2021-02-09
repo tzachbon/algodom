@@ -10,7 +10,6 @@ import ClassNames, { WithClassName } from '../../utils/classnames';
 import { sortFunctions, Sorts } from '../../utils/sort/sort';
 import { ISortElement } from '../SortElement';
 import { startCase } from 'lodash';
-import './style.scss';
 
 interface ITestSortsDialogProps extends WithClassName {
   open: boolean;

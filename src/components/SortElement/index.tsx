@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
-import './style.scss';
+// import './style.scss';
 
 interface ISortElementProps extends WithClassName {
   value: number;

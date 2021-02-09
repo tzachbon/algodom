@@ -5,7 +5,6 @@ import Select from '@material-ui/core/Select';
 import { observer } from 'mobx-react';
 import React, { useState, useEffect } from 'react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
-import './style.scss';
 import { Sorts } from '../../utils/sort/sort';
 import { startCase } from 'lodash';
 

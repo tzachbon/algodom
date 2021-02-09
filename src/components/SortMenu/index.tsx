@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
 import Slider from '@material-ui/core/Slider';
-import './style.scss';
+// import './style.scss';
 import TestSortsDialog from '../TestSortsDialog';
 import { ISortElement } from '../SortElement';
 

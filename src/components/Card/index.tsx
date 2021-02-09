@@ -1,7 +1,6 @@
 import LaunchIcon from '@material-ui/icons/Launch';
 import React from 'react';
 import ClassNames, { WithClassName } from '../../utils/classnames';
-import './style.scss';
 import Link from 'next/link';
 
 interface ICardProps extends WithClassName {

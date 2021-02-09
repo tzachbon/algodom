@@ -1,3 +1,5 @@
-const store = {};
+import { getMainColor } from '../utils/styles';
 
-export default store;
+export default  {
+  mainColor: getMainColor()
+}
